@@ -1,5 +1,10 @@
-from django.shortcuts import render, get_object_or_404
-from Blog.core.models import Blog
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
+
+from core.models import Blog
+
 
 def listing(request):
     data = {
@@ -7,6 +12,7 @@ def listing(request):
     }
 
     return render(request, "listing.html", data)
+
 
 def view_blog(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
